@@ -1,0 +1,32 @@
+<!-- <h1>Welcome to {{hotelName}}!</h1> -->
+<!-- <hia-header></hia-header> -->
+<!-- {{rooms$ | async | json}} -->
+<div [hidden]="hideRooms">
+    Number of rooms:
+    <div [ngStyle]="{'color': rooms.availableRooms > 0 ? 'green' :'red'}" [innerText]="rooms.totalRooms"></div>
+</div>
+<div *ngIf="roomsSelected">
+    {{roomsSelected | json}}
+</div>
+<div>
+    <button (click)="addRoom()">Add Room</button>
+</div>
+
+{{rooms.availableRooms <= 0 ? 'no rooms available!' : '' }} 
+<div *ngIf="rooms$ | async">
+    Available rooms List:<span [innerText]="rooms.availableRooms + ' rooms'"></span>
+    </div>
+    <hia-rooms-list [rooms]="rooms$ | async" [title] = "title"
+    (roomsSelected)="selectRoom($event)">
+
+    </hia-rooms-list>
+
+    <button (click)="toggle()">Toggle</button>
+
+    <button (click)="editRoom()">Edit</button>
+
+    <button (click)="deleteRoom()">Delete</button>
+
+    <h1>
+        {{totalBytes}} loaded.
+    </h1>

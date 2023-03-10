@@ -1,0 +1,34 @@
+<span style="display: block; padding-top: 0.5em;;"><h2>{{title}}:</h2></span>
+<!-- {{roomList | json}} -->
+<table class="table" style="margin: 0 1em 0 1em;">
+    <tr style="width: max-content; align-items: center;">
+        <th>Index</th>
+        <th>Even/Odd</th>
+        <th>Room Number</th>
+        <th>Room Type</th>
+        <th>Room Amenities</th>
+        <th>Room Price</th>
+        <th>Rating</th>
+        <th>CheckIn Time</th>
+        <th>
+            Select Room
+        </th>
+    </tr>
+    <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of rooms let e = even; let o = odd; let i = index;">
+        <td>{{ i }}</td>
+        <td >{{ e ? "Even" : "Odd" }}</td>
+        <td>{{ room.roomNum }}</td>
+        <td>{{ room.roomType }}</td>
+        <td>{{ room.amenities | lowercase }}</td>
+        <td>{{ room.price | currency: 'GBP'}}</td>
+        <td>{{ room.rating | number : '1.0-2'}}</td>
+        <td>{{ room.checkInTime | date: 'longDate' }}</td>
+        <td>
+            <button
+                class="btn btn-primary"
+                (click) = "selectRoom(room)">
+                Select
+            </button>
+        </td>
+    </tr>
+</table>
