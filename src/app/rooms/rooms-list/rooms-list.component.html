@@ -24,11 +24,12 @@
         <td>{{ room.rating | number : '1.0-2'}}</td>
         <td>{{ room.checkInTime | date: 'longDate' }}</td>
         <td>
-            <button
+            <!-- <button
                 class="btn btn-primary"
                 (click) = "selectRoom(room)">
                 Select
-            </button>
+            </button> -->
+            <button class="btn btn-primary" [routerLink]="['/rooms', room.roomNum]" >Book Room</button>
         </td>
     </tr>
 </table>
